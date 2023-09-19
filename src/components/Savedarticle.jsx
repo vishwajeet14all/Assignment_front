@@ -1,6 +1,6 @@
 import { Link as ChakraLink, Box, Text, Flex, Button, Grid } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import Mainnews from "./Ui";
+import Ui from "./Ui";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 
@@ -12,6 +12,12 @@ const Singlesave = () => {
     setItem(arr);
   }, []);
 
+  const handleDeleteItem = (url) => {
+    const data = item.filter((el) => el.url !== url);
+    localStorage.setItem("savedItems", JSON.stringify(data));
+    setItem(data)
+  };
+  console.log(item);
   return (
     <>    
     <Flex boxShadow="base" w="100%" justifyContent="flex-end">
@@ -40,8 +46,10 @@ const Singlesave = () => {
         </Box>
       ) : (
         <Box>
-          {item?.map((el) => {
-            return <Mainnews {...el} />;
+          {item?.map((item) => {
+            return <Ui 
+            handleDeleteItem = {handleDeleteItem}
+            {...item} />;
           })}
         </Box>
       )}

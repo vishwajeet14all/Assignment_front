@@ -3,6 +3,7 @@ import { Link as ChakraLink, Flex, Button } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 const Navbar = () => {
+  
   function handleSignOut() {
     localStorage.removeItem("token");
   }

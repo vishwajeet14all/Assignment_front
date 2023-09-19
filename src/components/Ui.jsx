@@ -12,37 +12,18 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Ui = (news) => {
+ 
   const location = useLocation();
   const pathname = location.pathname;
-  const [item, setItem] = useState([]);
 
-  useEffect(() => {
-    const arr = JSON.parse(localStorage.getItem("savedItems")) || [];
-    setItem(arr);
-  }, []);
-
-  const handleDeleteItem = () => {
-    const data = item.filter((el) => el.url !== news.url);
-    localStorage.setItem("savedItems", JSON.stringify(data));
-    window.location.reload();
-  };
   return (
-
     <GridItem boxShadow="xl" color="#fff" key={Math.random()} py={2}>
       <Container maxW="9xl" px={{ base: 6, md: 3 }} py={10}>
-        <Stack
-          w="100%"
-          direction={{ base: "column-reverse", md: "row" }}
-        >
-          <Stack
-            w={{ base: "100%", md: "50%" }}
-            direction="column"
-            spacing={6}
-          >
+        <Stack w="100%" direction={{ base: "column-reverse", md: "row" }}>
+          <Stack w={{ base: "100%", md: "50%" }} direction="column" spacing={6}>
             {/* News Title */}
             <Heading
               as="h3"
@@ -94,7 +75,7 @@ const Ui = (news) => {
               </Link>
 
               {pathname === "/save" ? (
-                <Button onClick={handleDeleteItem}>
+                <Button onClick={() => news.handleDeleteItem(news.url)}>
                   Mark As Completed
                 </Button>
               ) : (
@@ -117,18 +98,20 @@ const Ui = (news) => {
             {/* Tags */}
             <HStack spacing={5}>
               {["100% Real", "Trusted News"].map((text, index) => (
-                <HStack spacing={2} key={index}>                  
-                  <Text justifyContent="center" ml={8}  color="black" fontSize="xs">
+                <HStack spacing={2} key={index}>
+                  <Text
+                    justifyContent="center"
+                    ml={8}
+                    color="black"
+                    fontSize="xs"
+                  >
                     {text}
                   </Text>
                 </HStack>
               ))}
             </HStack>
-          </Stack>  
-          <Box
-            w={{ base: "100%", md: "50%" }}
-            ml={{ base: 0, md: 5 }}
-          >
+          </Stack>
+          <Box w={{ base: "100%", md: "50%" }} ml={{ base: 0, md: 5 }}>
             <Image
               w="100%"
               h="100%"
