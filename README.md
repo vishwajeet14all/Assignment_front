@@ -1,6 +1,6 @@
 # Live link ->
 https://melodious-gumdrop-98f179.netlify.app
-//please wait of ot takes time after Registr or login your account it take some time or try it in again in some time . i used shared hosting here
+//please wait if it,s takes time after Registr or login your account it take some time or try it in again in some time . i used shared hosting here
 
 ## Available Scripts
 npm i 
